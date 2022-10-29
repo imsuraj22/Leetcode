@@ -7,7 +7,7 @@ class Solution {
         int l=0;
         int m=0;
         for(int i=0;i<nums.length;i++){
-            if(nums[i]<0){
+            if(nums[i]>0){
                 posarr[l++]=nums[i];
             }else{
                 negarr[m++]=nums[i];
@@ -17,7 +17,7 @@ class Solution {
         m=0;
 
         for(int i=0;i<nums.length;i++){
-            if(i%2!=0){
+            if(i%2==0){
                 nums[i]=posarr[l++];
             }else{
                 nums[i]=negarr[m++];
