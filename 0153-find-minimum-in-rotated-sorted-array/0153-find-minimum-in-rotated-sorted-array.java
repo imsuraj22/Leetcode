@@ -1,10 +1,20 @@
 class Solution {
     public int findMin(int[] nums) {
-        PriorityQueue<Integer> q=new PriorityQueue<>();
-        for(int i=0;i<nums.length;i++){
-            q.add(nums[i]);
+      int l=0;
+        int r=nums.length-1;
+       
+        while(l<r){
+            
+            int mid=(l+r)/2;
+            if(mid>0 && nums[mid]<nums[mid-1]){
+                return nums[mid];
+            }
+            if(nums[l]<=nums[mid] && nums[mid]>nums[r]){
+                l=mid+1;
+            }else{
+             r=mid-1;
+            }
         }
-        int temp=q.poll();
-        return temp;
+        return nums[l];
     }
 }
