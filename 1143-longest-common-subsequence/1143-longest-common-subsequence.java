@@ -1,17 +1,23 @@
 class Solution {
-   private int longestCommonSubsequence(String s, int i, String t, int j, int[][] cache) {
-        if (i >= s.length() || j >= t.length()) return 0;
-        if (cache[i][j] != -1) return cache[i][j];
-        if (s.charAt(i) == t.charAt(j)) return (cache[i][j] = 1 + longestCommonSubsequence(s, i + 1, t, j + 1, cache));
-        int moveBoth = longestCommonSubsequence(s, i + 1, t, j + 1, cache);
-        int moveS = longestCommonSubsequence(s, i + 1, t, j, cache);
-        int moveT = longestCommonSubsequence(s, i, t, j + 1, cache);
-        return (cache[i][j] = Math.max(moveS, Math.max(moveT, moveBoth)));
+   int solution(int ind1,int ind2,String s1,String s2,int dp[][]){
+        if(ind1<0 || ind2<0) return 0;
+
+        if(dp[ind1][ind2]!=-1) return dp[ind1][ind2];
+
+        if(s1.charAt(ind1)==s2.charAt(ind2)) return dp[ind1][ind2]=1+solution(ind1-1, ind2-1, s1, s2,dp);
+
+        return dp[ind1][ind2]= 0+Math.max(solution(ind1-1, ind2, s1, s2,dp), solution(ind1, ind2-1, s1, s2,dp));
+
     }
 
     public int longestCommonSubsequence(String s, String t) {
-        int[][] cache = new int[s.length()][t.length()];
-        for (int[] dp : cache) Arrays.fill(dp, -1);
-        return longestCommonSubsequence(s, 0, t, 0, cache);
+        int n1=s.length();
+        int n2=t.length();
+        int dp[][]=new int[n1][n2];
+        for(int i=0;i<dp.length;i++){
+            Arrays.fill(dp[i], -1);
+        }
+
+        return solution(n1-1,n2-1,s,t,dp);
     }
 }
