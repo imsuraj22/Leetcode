@@ -1,17 +1,31 @@
 class Solution {
    public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> res=new ArrayList<>();
-        p=sort(p);
-        for(int i=0;i<=s.length()-p.length();i++){
-            if(p.equals(sort(s.substring(i, i+p.length())))){
-                res.add(i);
-            }
+       int[] map = new int[26];
+        List<Integer> result = new ArrayList<>();
+        
+        for(int i=0;i<p.length();i++){
+            map[p.charAt(i) - 'a']++;
         }
-        return res;
-    }
-    String sort(String s){
-        char ch[]=s.toCharArray();
-        Arrays.sort(ch);
-        return new String(ch);
+    
+        int windowStart = 0;
+        int windowEnd = 0;
+        while(windowEnd<s.length()){
+		
+            if(map[s.charAt(windowEnd) - 'a'] > 0){
+                map[s.charAt(windowEnd++) - 'a']--;
+
+                if(windowEnd-windowStart ==  p.length()){                    
+                    result.add(windowStart);
+                }
+            }
+            else if(windowStart == windowEnd){
+                windowStart ++;
+                windowEnd ++;
+            }
+            else{
+                map[s.charAt(windowStart++) - 'a']++;
+            }      
+        }
+        return result;
     }
 }
