@@ -23,7 +23,7 @@
      }  
 class Solution {
     Integer res; 
-    Integer prev;
+    Integer prev=0;
         
     public int minDiffInBST(TreeNode root) {
         res = Integer.MAX_VALUE;
