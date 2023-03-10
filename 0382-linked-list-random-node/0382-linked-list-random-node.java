@@ -10,32 +10,26 @@
  */
 class Solution {
 
-   int count=0;
-   HashMap<Integer,ListNode> map=new HashMap<>();
-
-  public Solution(ListNode head) {
+   ListNode head;
+    Random random;
     
-        ListNode temp=head;
-        while(temp!=null){
-          map.put(count++, temp);
-         // count++;
-
-          temp=temp.next;
-        }
-  }
-  
-  public int getRandom() {
-    int min=1;
-    //int max=count;
-    Random random = new Random();
-    int randomNumber = random.nextInt(count);
-    ListNode temp=null;
-    for(Integer key:map.keySet()){
-      temp=map.get(randomNumber);
+    public Solution(ListNode h) {
+        head = h;       
+        random = new Random();        
     }
-
-    return temp.val;
-  }
+    
+    public int getRandom() {
+        
+        ListNode c = head;
+        int r = c.val;
+        for(int i=1;c.next != null;i++){
+            
+            c = c.next;
+            if(random.nextInt(i + 1) == i) r = c.val;                        
+        }
+        
+        return r;
+    }
 }
 
 /**
