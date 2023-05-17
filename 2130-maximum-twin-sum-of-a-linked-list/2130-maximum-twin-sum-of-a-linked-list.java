@@ -10,20 +10,39 @@
  */
 class Solution {
     public int pairSum(ListNode head) {
-        int max=0;
-        Deque<ListNode> q=new LinkedList<>();
-        while(head!=null){
-          q.add(head);
-          head=head.next;
-        }
-        while(q.size()>1){
-          int f=q.pollFirst().val;
-            System.out.println("f "+f);
-          int l=q.pollLast().val;
-            System.out.println("l "+l);
-          int curr=f+l;
-          if(curr>max) max=curr;
-        }
-        return max;
+    int max=0;
+       if(head==null) return 0;
+       if(head.next==null) return head.val;
+       ListNode fast=head;
+       ListNode slow=head;
+       while(fast!=null && fast.next!=null){
+        slow=slow.next;
+        fast=fast.next.next;
+       }
+       slow=reverse(slow);
+       fast=head;
+       while(slow!=null){
+        max=Math.max(fast.val+slow.val, max);
+        slow=slow.next;
+        fast=fast.next;
+       }
+
+       return max; 
+
     }
+
+    ListNode reverse(ListNode node){
+      ListNode current=node;
+      ListNode prev=null;
+      while(current!=null){
+        ListNode next=current.next;
+        current.next=prev;
+        prev=current;
+        current=next;
+
+      }
+
+      return prev;
+    }
+
 }
