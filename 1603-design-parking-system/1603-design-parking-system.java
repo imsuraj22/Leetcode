@@ -1,6 +1,6 @@
 class ParkingSystem {
 
-   int arr[];
+    int arr[];
     public ParkingSystem(int big, int medium, int small) {
         this.arr=new int[]{big,medium,small};
     }
