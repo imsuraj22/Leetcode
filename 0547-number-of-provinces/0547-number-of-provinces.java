@@ -1,13 +1,10 @@
 class Solution {
-  
-        public int findCircleNum(int[][] isConnected) {
-     
-        ArrayList<ArrayList<Integer>> adj=new ArrayList<>();
+    public int findCircleNum(int[][] isConnected) {
         int n=isConnected.length;
-        for(int i=0;i<=n;i++){
+        ArrayList<ArrayList<Integer>> adj=new ArrayList<>();
+        for(int i=0;i<n;i++){
             adj.add(new ArrayList<>());
         }
-
         for(int i=0;i<n;i++){
             for(int j=0;j<isConnected[0].length;j++){
                 if(isConnected[i][j]==1 && i!=j){
@@ -17,11 +14,11 @@ class Solution {
             }
         }
 
-        int count=0;
         int vis[]=new int[n];
+        int count=0;
         for(int i=0;i<n;i++){
-            if(vis[i]!=1){
-                dfs(i, adj, vis);
+            if(vis[i]==0){
+                dfs(i, adj, vis);   
                 count++;
             }
         }
