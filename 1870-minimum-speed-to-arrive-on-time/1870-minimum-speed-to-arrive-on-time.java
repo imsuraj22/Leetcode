@@ -1,5 +1,5 @@
 class Solution {
-   public int minSpeedOnTime(int[] dist, double hour) {
+     public int minSpeedOnTime(int[] dist, double hour) {
         int n = dist.length;
         int min = 1, max = 10000000;
         int ans = -1;
