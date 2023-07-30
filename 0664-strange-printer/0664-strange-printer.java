@@ -1,5 +1,5 @@
 class Solution {
-      public int strangePrinter(String s) {
+     public int strangePrinter(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
