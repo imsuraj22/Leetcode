@@ -121,13 +121,17 @@ class Solution{
     Node * inOrderSuccessor(Node *root, Node *x)
     {
         //Your code here
-        
-        if(!root || ! x) return nullptr;
-        inorder(root);
-        for(size_t i =0;i<ans.size()-1;i++){
-            if(ans[i]== x) return ans[i+1];
+        if(root==NULL) return root;
+        Node* s;
+        while(root!=NULL){
+            if(root->data>x->data){
+                s=root;
+                root=root->left;
+            }else{
+                root=root->right;
+            }
         }
-        return NULL;
+        return s;
     }
 };
 
