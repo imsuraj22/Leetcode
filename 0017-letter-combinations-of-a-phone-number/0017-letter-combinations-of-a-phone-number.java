@@ -4,11 +4,12 @@ class Solution {
 		if(digits.isEmpty()) return ans;
 		String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 		ans.add("");
-		while(ans.peek().length()!=digits.length()){
-			String remove = ans.remove();
-			String map = mapping[digits.charAt(remove.length())-'0'];
-			for(char c: map.toCharArray()){
-				ans.addLast(remove+c);
+		for(int i =0; i<digits.length();i++){
+			int x = Character.getNumericValue(digits.charAt(i));
+			while(ans.peek().length()==i){
+				String t = ans.remove();
+				for(char s : mapping[x].toCharArray())
+					ans.add(t+s);
 			}
 		}
 		return ans;
