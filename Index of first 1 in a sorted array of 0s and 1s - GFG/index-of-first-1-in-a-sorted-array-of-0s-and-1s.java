@@ -40,11 +40,20 @@ class Solution {
     public long firstIndex(long arr[], long n)
     {
         // Your code goes here
-          for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 1) {
-                return i;
+           int low=0;
+        int high=arr.length-1;
+        int result=-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+
+            if(arr[mid]==1){
+                result=mid;
+                high=mid-1;
+            }else{
+                low=mid+1;
             }
         }
-        return -1;
+        return result;
     }
 }
